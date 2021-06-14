@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>CS 565 HW 4c</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <style type="text/css">
+        /* Your CSS goes here. You can change the code below if needed. */
+        
+        @font-face {
+            font-family: 'icomoon';
+            src: url('fonts/icomoon.eot?bsdd02');
+            src: url('fonts/icomoon.eot?bsdd02#iefix') format('embedded-opentype'), url('fonts/icomoon.ttf?bsdd02') format('truetype'), url('fonts/icomoon.woff?bsdd02') format('woff'), url('fonts/icomoon.svg?bsdd02#icomoon') format('svg');
+            font-weight: normal;
+            font-style: normal;
+            font-display: block;
+        }
+        
+        * {
+            /* init the format */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            height: 100%;
+        }
+        
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #dddddd;
+            height: 100%;
+            margin: 0;
+        }
+        
+        #wrap {
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 1200px;
+        }
+        
+        #header-for-cs565 {
+            background-color: #555555;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 12px;
+            padding: 5px 10px;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        /* my code start here */
+        /* --------------------head begin-------------------- */
+        
+        header {
+            background-color: #fff;
+            width: 100%;
+            height: 80px;
+        }
+        
+        header img {
+            height: 80px;
+            padding: 10px;
+        }
+        
+        .profile {
+            float: right;
+        }
+        
+        .profile a {
+            font-family: Arial, Helvetica, sans-serif, 'icomoon';
+            text-decoration: none;
+            color: gray;
+            font-size: 20px;
+            line-height: 80px;
+            height: 80px;
+            padding: 0 15px 0 0;
+        }
+        /* --------------------head end-------------------- */
+        /* --------------------head_next begin-------------------- */
+        
+        .head_below {
+            width: 1200px;
+            height: 40px;
+        }
+        
+        .head_next {
+            background-color: #fff;
+            border-top: 0.5px solid rgb(230, 230, 230);
+            border-bottom: 0.5px solid rgb(230, 230, 230);
+            height: 40px;
+            width: 600px;
+            float: left;
+        }
+        
+        .head_next h3 {
+            font-weight: 400;
+            line-height: 40px;
+            color: rgb(77, 77, 77);
+            padding-left: 30px;
+        }
+        
+        .countdown {
+            background-color: #fff;
+            border-top: 0.5px solid rgb(230, 230, 230);
+            border-bottom: 0.5px solid rgb(230, 230, 230);
+            height: 40px;
+            width: 600px;
+            float: left;
+            text-align: right;
+            color: rgb(77, 77, 77);
+            font-size: 14px;
+            padding-right: 7px;
+        }
+        
+        .countdown span {
+            color: #cc3c1f;
+            font-weight: bold;
+            line-height: 40px;
+        }
+        /* --------------------head_next end-------------------- */
+        /* --------------------title begin-------------------- */
+        
+        .title {
+            color: rgb(77, 77, 77);
+            height: 30px;
+            line-height: 30px;
+            margin: 30px 0 0 30px;
+            float: left;
+            font-size: 20px;
+            width: 1170px;
+        }
+        /* --------------------title end-------------------- */
+        
+        .tables {
+            width: 1200px;
+        }
+        /* --------------------left begin-------------------- */
+        
+        .left {
+            float: left;
+            height: 700px;
+            width: 555px;
+            margin: 20px 15px 0 30px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 0 20px 5px rgb(199, 199, 199);
+        }
+        
+        .search_bar {
+            padding: 10px 0 10px 15px;
+            line-height: 35px;
+            text-align: center;
+            border-bottom: 0.5px solid rgb(230, 230, 230);
+        }
+        
+        .select {
+            height: 25px;
+            border-radius: 5px;
+            outline: none;
+            color: rgb(77, 77, 77);
+        }
+        
+        .keyword {
+            width: 245px;
+            height: 25px;
+            border-radius: 5px;
+            border: solid 0.5px rgb(77, 77, 77);
+            outline: none;
+        }
+        
+        .search {
+            font-family: Arial, Helvetica, sans-serif, 'icomoon';
+            background-color: #cc3c1f;
+            width: 80px;
+            color: #fff;
+            border: none;
+            height: 25px;
+            border-radius: 5px;
+        }
+        
+        .course {
+            width: 555px;
+            overflow: scroll;
+            height: 635px;
+        }
+        
+        .course_list {
+            width: 500px;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+        
+        .course_list li {
+            position: relative;
+            margin: 5px 0;
+            height: 62px;
+            width: 500px;
+            border-bottom: 1px solid rgb(230, 230, 230);
+        }
+        
+        .course_code {
+            color: #cc3c1f;
+            font-weight: bold;
+            display: block;
+            font-size: 20px;
+            line-height: 20px;
+            padding: 4px 0 0 4px;
+        }
+        
+        .course_name {
+            color: rgb(77, 77, 77);
+            font-size: 14px;
+            height: 16px;
+            line-height: 16px;
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            padding: 2px 0 2px 4px;
+        }
+        
+        .course_inst {
+            color: rgb(120, 120, 120);
+            font-size: 12px;
+            line-height: 12px;
+            float: left;
+            width: 25%;
+            padding: 6px 0 4px 4px;
+        }
+        
+        .course_time {
+            color: rgb(120, 120, 120);
+            font-size: 12px;
+            line-height: 12px;
+            float: right;
+            width: 12.5%;
+            text-align: right;
+            padding: 6px 4px 4px 0;
+        }
+        
+        .flag {
+            position: absolute;
+            right: 4px;
+            top: 4px;
+            background-color: gray;
+            color: white;
+            font-size: 10px;
+            padding: 4px;
+            border-radius: 4px;
+        }
+        
+        .close_bar {
+            background-color: rgb(230, 230, 230);
+            height: 60px;
+            width: 555px;
+            /* display: none; */
+        }
+        
+        .close {
+            height: 20px;
+            text-align: right;
+            /* display: none; */
+            width: 555px;
+        }
+        
+        .close .close_btn {
+            font-family: Arial, Helvetica, sans-serif, 'icomoon';
+            color: rgb(182, 0, 0);
+            text-decoration: none;
+            font-size: 12px;
+            padding: 0 5px 0 0;
+        }
+        
+        .close .close_btn:hover {
+            font-family: Arial, Helvetica, sans-serif, 'icomoon';
+            color: rgb(255, 0, 0);
+            text-decoration: underline;
+            font-size: 12.5px;
+            padding: 0 5px 0 0;
+        }
+        
+        .show_search {
+            height: 40px;
+            text-align: center;
+            width: 555px;
+            color: rgb(77, 77, 77);
+            font-size: 20px;
+            line-height: 40px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        
+        .result {
+            width: 555px;
+            overflow: scroll;
+            height: 570px;
+            /* display: none; */
+            background-color: rgb(230, 230, 230);
+        }
+        
+        .result_list {
+            width: 500px;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+        
+        .result_list li {
+            position: relative;
+            margin: 5px 0;
+            height: 65px;
+            width: 500px;
+            border-bottom: 1px solid rgb(210, 210, 210);
+        }
+        /* --------------------left end-------------------- */
+        /* --------------------right begin-------------------- */
+        
+        .right {
+            float: left;
+            height: 700px;
+            width: 555px;
+            margin: 20px 30px 0 15px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 0 20px 5px rgb(199, 199, 199);
+        }
+        
+        .right_title {
+            font-family: Arial, Helvetica, sans-serif, 'icomoon';
+            padding: 10px 0 10px 15px;
+            line-height: 35px;
+            font-size: 20px;
+            border-bottom: 0.5px solid rgb(230, 230, 230);
+            vertical-align: middle;
+            color: rgb(87, 87, 87);
+        }
+        
+        .time_table_outer {
+            width: 500px;
+            height: 600px;
+            position: relative;
+            margin: 20px auto;
+        }
+        
+        .fix_floating_outer {
+            width: 500px;
+            height: 600px;
+            position: relative;
+            margin: 20px auto;
+        }
+        
+        .time_table {
+            width: 500px;
+            border-collapse: collapse;
+            text-align: center;
+            color: rgb(87, 87, 87);
+            border: 0 solid black;
+            font-size: 15px;
+        }
+        
+        .time_table td {
+            border-top: 0;
+            height: 50px;
+            border-right: 1px solid rgb(87, 87, 87);
+            border-bottom: 1px solid rgb(87, 87, 87);
+        }
+        
+        .time_table tr.last_row td {
+            border-bottom: 0;
+        }
+        
+        .time_table tr td.last_col {
+            border-right: 0;
+        }
+        
+        .time_table tbody tr td:nth-child(1) {
+            width: 50px;
+        }
+        
+        .time_table tbody tr td:nth-child(2) {
+            width: 90px;
+        }
+        
+        .time_table tbody tr td:nth-child(3) {
+            width: 90px;
+        }
+        
+        .time_table tbody tr td:nth-child(4) {
+            width: 90px;
+        }
+        
+        .time_table tbody tr td:nth-child(5) {
+            width: 90px;
+        }
+        
+        .time_table tbody tr td:nth-child(6) {
+            width: 90px;
+        }
+        /* --------------------right end-------------------- */
+        /* ----------mouse----------begin---------- */
+        
+        .bg_over {
+            /* box-shadow: 0 -3px 3px 3px rgb(199, 199, 199); */
+            background-color: rgb(215, 215, 215);
+            border-radius: 5px;
+        }
+        
+        .bg_over span {
+            color: #cc3c1f;
+        }
+        
+        .bg_over .flag {
+            background-color: orange;
+            color: #fff;
+        }
+        
+        .bg_over_delete {
+            background-color: #ff6040;
+            border-radius: 5px;
+        }
+        
+        .bg_over_delete span {
+            color: white;
+        }
+        
+        .bg_over_delete .flag {
+            background-color: orange;
+            color: #fff;
+        }
+        
+        .bg_mouseon {
+            background-color: #cc3c1f;
+            border-radius: 5px;
+        }
+        
+        .bg_mouseon span {
+            color: #fff;
+            /* color: dodgerblue; */
+        }
+        
+        .bg_mouseon .flag {
+            background-color: #fff;
+            color: #cc3c1f;
+        }
+        /* ----------mouse----------end---------- */
+        /* --------------------floating module begin-------------------- */
+        
+        .module {
+            background-color: rgba(215, 215, 215, 0.6);
+            border: 3px dashed orange;
+            border-radius: 3px;
+            color: #cc3c1f;
+            /* display: none; */
+            text-align: center;
+            padding: 5px;
+            font-weight: 700;
+        }
+        
+        .show_text_s {
+            background-color: orange;
+            border: 3px dashed orange;
+            color: #fff;
+            border-radius: 3px;
+            height: 15px;
+            line-height: 15px;
+            font-size: 10px;
+            font-weight: 400;
+        }
+        
+        .show_text_sd {
+            background-color: #fff;
+            border: 3px dashed #fff;
+            color: #cc3c1f;
+            border-radius: 3px;
+            height: 15px;
+            line-height: 15px;
+            font-size: 10px;
+            font-weight: 400;
+        }
+        
+        .module_show {
+            border: 3px solid #cc3c1f;
+            background-color: #cc3c1f;
+            border-radius: 3px;
+            color: white;
+            text-align: center;
+            padding: 5px;
+            font-weight: 700;
+        }
+        
+        .module_show_delte {
+            background-color: rgba(255, 62, 19, 0.9);
+            border-radius: 3px;
+            border: 3px dashed #cc3c1f;
+            color: white;
+            text-align: center;
+            padding: 5px;
+            font-weight: 700;
+        }
+        
+        .p_1_20_1 {
+            width: 85px;
+            height: 95px;
+            position: absolute;
+            left: 51px;
+            top: 51px;
+        }
+        
+        .p_1_20_2 {
+            width: 85px;
+            height: 95px;
+            position: absolute;
+            left: 231px;
+            top: 51px;
+        }
+        
+        .p_2_15_1 {
+            width: 85px;
+            height: 70px;
+            position: absolute;
+            left: 51px;
+            top: 51px;
+        }
+        
+        .p_2_15_2 {
+            width: 85px;
+            height: 70px;
+            position: absolute;
+            left: 231px;
+            top: 51px;
+        }
+        
+        .p_3_40 {
+            width: 85px;
+            height: 195px;
+            position: absolute;
+            left: 51px;
+            top: 51px;
+        }
+        
+        .p_4_30 {
+            width: 85px;
+            height: 145px;
+            position: absolute;
+            left: 51px;
+            top: 51px;
+        }
+        
+        .p_5_10_1 {
+            width: 85px;
+            height: 45px;
+            position: absolute;
+            left: 53px;
+            top: 51px;
+        }
+        
+        .p_5_10_2 {
+            width: 85px;
+            height: 45px;
+            position: absolute;
+            left: 233px;
+            top: 51px;
+        }
+        
+        .p_5_10_3 {
+            width: 85px;
+            height: 45px;
+            position: absolute;
+            left: 413px;
+            top: 51px;
+        }
+        
+        .p_6_10_1 {
+            width: 85px;
+            height: 45px;
+            position: absolute;
+            left: 51px;
+            top: 51px;
+        }
+        
+        .p_6_10_2 {
+            width: 85px;
+            height: 45px;
+            position: absolute;
+            left: 231px;
+            top: 51px;
+        }
+        /* --------------------floating module end-------------------- */
+        
+        .warnning {
+            height: 40px;
+            background-color: rgb(255, 47, 0);
+            color: white;
+            padding: 5px;
+            line-height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Your HTML goes here. You can change the code below if needed. -->
+    <div id="wrap">
+        <div id="header-for-cs565">
+            CS 565 HW 4b (Name: Guixu Li, 933948526)
+        </div>
+        <div id="app">
+            <header>
+                <img src="image/osu_logo.svg">
+                <div class="profile">
+                    <a href="javascript:;"></a>
+                    <a href="javascript:;"></a>
+                </div>
+            </header>
+            <div class="head_below">
+                <div class="head_next">
+                    <h3>Student Select Classes</h3>
+                </div>
+                <div class="countdown">
+                    You still have
+                    <span>{{day}}</span> Day(s)
+                    <span>{{hour}}</span> Hour(s)
+                    <span>{{minute}}</span> Minute(s)
+                    <span>{{second}}</span> Second(s) to select class.
+                </div>
+            </div>
+            <div class="warnning" v-show="warn_flag">{{warn_text}}</div>
+            <div class="title">
+                Classes and Time Table
+            </div>
+            <div class="tables">
+                <div class="left">
+                    <div class="search_bar">
+                        <form action="javascript:;">
+                            <select name="term" class="select">
+								<option value="sp">Spring 2021</option><option value="su">Summar 2021</option><option value="fu">Full 2021</option><option value="wi">Winter 2021</option>
+							</select>
+                            <input type="search" v-model="keyword" placeholder=" Title, Subject, Instructor or Keyword" class="keyword" required="required">
+                            <input type="submit" @click="search_fn" value="Search " class="search">
+                        </form>
+                    </div>
+                    <!-- search page close bar -->
+                    <div class="close_bar" v-show="result_flag">
+                        <div class="close">
+                            <a href="javascript:;" class="close_btn" @click="close_bar">Close </a>
+                        </div>
+                        <!-- show the keyword user entered -->
+                        <div v-if="close_bar_flag == 1" class="show_search">Show the result(s) for "{{search_result}}"</div>
+                        <div v-else="close_bar_flag == 0" class="show_search">No result for "{{search_result}}"</div>
+                    </div>
+                    <!-- search result list -->
+                    <div class="result" v-show="result_flag">
+                        <ul class="result_list">
+                            <li v-for="(res,index) in result" @click="r_mouseon_fn(index,$event)" @mouseout="mouseout_fn(index,$event)" @mouseover="mouseover_fn(index,$event)" :class="[overIndex==index?'bg_over':'', indexArr_1.indexOf(index)>-1?'bg_mouseon':'']">
+                                <span class="course_code">{{res.code}}</span>
+                                <span class="course_name">{{res.title}}</span>
+                                <span class="course_inst">{{res.instructor}}</span>
+                                <span class="course_time" v-for="ti in res.times"> {{ti.day}}: {{ti.hour}}-{{ti.hour + ti.duration}}</span>
+                                <span class="flag" v-show="switchShow[index][0]">Not Select</span>
+                                <span class="flag" v-show="switchShow[index][1]">Selecting</span>
+                                <span class="flag" v-show="switchShow[index][2]">Deleting</span>
+                                <span class="flag" v-show="switchShow[index][3]">Selected</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="course" v-show="course_flag">
+                        <!-- original course list -->
+                        <ul class="course_list">
+                            <li v-for="(course,index) in courses" @click="mouseon_fn(index,$event)" @mouseout="mouseout_fn(index,$event)" @mouseover="mouseover_fn(index,$event)" :class="[overIndex==index?'bg_over':'', indexArr.indexOf(index)>-1?'bg_mouseon':'']">
+                                <span class="course_code">{{course.code}}</span>
+                                <span class="course_name">{{course.title}}</span>
+                                <span class="course_inst">{{course.instructor}}</span>
+                                <span class="course_time" v-for="time in course.times"> {{time.day}}: {{time.hour}}-{{time.hour + time.duration}}</span>
+                                <span class="flag" v-show="switchShow[index][0]">Not Select</span>
+                                <span class="flag" v-show="switchShow[index][1]">Selecting</span>
+                                <span class="flag" v-show="switchShow[index][2]">Deleting</span>
+                                <span class="flag" v-show="switchShow[index][3]">Selected</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="right_title"> Time Table</div>
+                    <div class="time_table_outer">
+                        <table class="time_table">
+                            <tr>
+                                <td></td>
+                                <td>Monday</td>
+                                <td>Tuesday</td>
+                                <td>Wednesday</td>
+                                <td>Thursday</td>
+                                <td class="last_col">Friday</td>
+                            </tr>
+                            <tr>
+                                <td>8am</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="last_col"></td>
+                            </tr>
+                            <tr>
+                                <td>9am</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="last_col"></td>
+                            </tr>
+                            <tr>
+                                <td>10am</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="last_col"></td>
+                            </tr>
+                            <tr>
+                                <td>11am</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="last_col"></td>
+                            </tr>
+                            <tr>
+                                <td>12pm</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="last_col"></td>
+                            </tr>
+                            <tr>
+                                <td>1pm</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="last_col"></td>
+                            </tr>
+                            <tr>
+                                <td>2pm</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="last_col"></td>
+                            </tr>
+                            <tr>
+                                <td>3pm</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="last_col"></td>
+                            </tr>
+                            <tr>
+                                <td>4pm</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="last_col"></td>
+                            </tr>
+                            <tr>
+                                <td>5pm</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="last_col"></td>
+                            </tr>
+                            <tr class="last_row">
+                                <td>6pm</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="last_col"></td>
+                            </tr>
+                        </table>
+                        <!-- p-possibility, num-situation, num-duration, num-how many class(s) -->
+                        <div v-show="float_flag[1]" class="p_1_20_1 p1_20_1 module">1.1</div>
+                        <div v-show="float_flag[1]" class="p_1_20_2 p1_20_2 module">1.2</div>
+                        <div v-show="float_flag[2]" class="p_2_15_1 p2_15_1 module">2.1</div>
+                        <div v-show="float_flag[2]" class="p_2_15_2 p2_15_2 module">2.2</div>
+                        <div v-show="float_flag[3]" class="p_3_40 p3_40 module">3</div>
+                        <div v-show="float_flag[4]" class="p_4_30 p4_30 module">4</div>
+                        <div v-show="float_flag[5]" class="p_5_10_1 p5_10_1 module">5.1</div>
+                        <div v-show="float_flag[5]" class="p_5_10_2 p5_10_2 module">5.2</div>
+                        <div v-show="float_flag[5]" class="p_5_10_3 p5_10_3 module">5.3</div>
+                        <div v-show="float_flag[6]" class="p_6_10_1 p6_10_1 module">6.1</div>
+                        <div v-show="float_flag[6]" class="p_6_10_2 p6_10_2 module">6.2</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script type="text/javascript">
+        // Example code. You can change it.
+        var app = new Vue({
+            el: '#app',
+            data: {
+                //switch word content array
+                switchShow: [
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false],
+                    [true, false, false, false]
+
+                ],
+                warn_flag: false,
+                courses: [],
+                result: '',
+                warn_text: '',
+                day: 0,
+                hour: 0,
+                minute: 0,
+                second: 0,
+                keyword: '', //get the search keyword
+                course_flag: true,
+                result_flag: false,
+                search_result: '',
+                close_bar_flag: 1,
+                overIndex: null,
+                indexArr: [],
+                indexArr_1: [],
+                click_flag: 0,
+                click_array: [],
+                result_click_array: [],
+                float_flag: [false, false, false, false, false, false, false],
+                warn_array: [],
+            },
+
+            mounted() {
+                //start once to make sure that user will see the countdown time from the beginning.
+                this.countDown();
+                //activite the countdown function.
+                this._interval = setInterval(() => {
+                    this.countDown();
+                }, 1000)
+            },
+
+            destroyed() {
+                clearInterval(this._interval)
+            },
+
+            beforeMount() {
+                fetch("cs565_hw4c_schedule_data.json")
+                    .then(response => response.json())
+                    .then(data => {
+                        // console.log("data", data);
+                        this.courses = data.courses;
+                    })
+            },
+
+            methods: {
+                dynamicDelete: function(fnIndex, fnValue, array, data) {
+                    let tempArr = []
+                    for (i in data) {
+                        tempArr.push(data[i].times)
+                    }
+                    let timeTable = document.querySelector('.time_table_outer')
+                    let node_1 = document.querySelector('.' + array[fnValue][0])
+                    let node_2 = document.querySelector('.' + array[fnValue][1])
+                    let node_3 = document.querySelector('.' + array[fnValue][2])
+                        //two class day
+                    if (tempArr[fnIndex].length == 2) {
+                        timeTable.removeChild(node_1)
+                        timeTable.removeChild(node_2)
+                    } else if (tempArr[fnIndex].length == 1) {
+                        timeTable.removeChild(node_1)
+                    } else if (tempArr[fnIndex].length == 3) {
+                        timeTable.removeChild(node_1)
+                        timeTable.removeChild(node_2)
+                        timeTable.removeChild(node_3)
+                    }
+
+                },
+
+                which_to_show: function(indexNum) {
+                    for (let i = 1; i <= 6; i++) {
+                        this.float_flag[i] = false
+                    }
+                    this.float_flag[indexNum] = true
+                },
+
+                float_show: function(fnIndex, array) {
+                    let p1_1, p1_2, p2_1, p2_2, p3, p4, p5_1, p5_2, p5_3, p6_1, p6_2;
+                    let tempArr = []
+                    for (i in array) {
+                        tempArr.push(array[i].times)
+                    }
+                    //two class day
+                    if (tempArr[fnIndex].length == 2) {
+                        p1_1 = document.querySelector('.p1_20_1')
+                        p1_2 = document.querySelector('.p1_20_2')
+                        p2_1 = document.querySelector('.p2_15_1')
+                        p2_2 = document.querySelector('.p2_15_2')
+                        p6_1 = document.querySelector('.p6_10_1')
+                        p6_2 = document.querySelector('.p6_10_2')
+                            //2 hours, p1
+                        if (tempArr[fnIndex][0].duration == 2) {
+                            this.which_to_show(1)
+                            if (tempArr[fnIndex][0].day == 'M') {
+                                //Mon,Wen
+                                p1_1.innerHTML = array[fnIndex].code + ' <span class="show_text_s">Selecting</span>'
+                                p1_2.innerHTML = array[fnIndex].code + ' <span class="show_text_s">Selecting</span>'
+                                p1_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                                p1_2.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                                p1_1.style.left = 53 + 'px';
+                                p1_2.style.left = 233 + 'px';
+                            } else if (tempArr[fnIndex][0].day == 'T') {
+                                //Tue Thu
+                                p1_1.innerHTML = array[fnIndex].code + ' <span class="show_text_s">Selecting</span>'
+                                p1_2.innerHTML = array[fnIndex].code + ' <span class="show_text_s">Selecting</span>'
+                                p1_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                                p1_2.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                                p1_1.style.left = 143 + 'px';
+                                p1_2.style.left = 323 + 'px';
+                            } else if (tempArr[fnIndex][0].day == 'W') {
+                                //Wen Fri
+                                p1_1.innerHTML = array[fnIndex].code + ' <span class="show_text_s">Selecting</span>'
+                                p1_2.innerHTML = array[fnIndex].code + ' <span class="show_text_s">Selecting</span>'
+                                p1_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                                p1_2.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                                p1_1.style.left = 233 + 'px';
+                                p1_2.style.left = 413 + 'px';
+                            }
+                        } else if (tempArr[fnIndex][0].duration == 1.5) {
+                            //1.5 hours, p2
+                            this.which_to_show(2)
+                            if (tempArr[fnIndex][0].day == 'M') {
+                                //Mon,Wen
+                                p2_1.innerHTML = array[fnIndex].code + ' <span class="show_text_s">Selecting</span>'
+                                p2_2.innerHTML = array[fnIndex].code + ' <span class="show_text_s">Selecting</span>'
+                                p2_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                                p2_2.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                                p2_1.style.left = 53 + 'px';
+                                p2_2.style.left = 233 + 'px';
+                            } else if (tempArr[fnIndex][0].day == 'T') {
+                                //Tue Thu
+                                p2_1.innerHTML = array[fnIndex].code + ' <span class="show_text_s">Selecting</span>'
+                                p2_2.innerHTML = array[fnIndex].code + ' <span class="show_text_s">Selecting</span>'
+                                p2_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                                p2_2.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                                p2_1.style.left = 143 + 'px';
+                                p2_2.style.left = 323 + 'px';
+                            }
+                        } else if (tempArr[fnIndex][0].duration == 1) {
+                            //1 hour, p6
+                            this.which_to_show(6)
+                            if (tempArr[fnIndex][0].day == 'M') {
+                                //Mon,Wen
+                                p6_1.innerHTML = array[fnIndex].code + ' <span class="show_text_s">Selecting</span>'
+                                p6_2.innerHTML = array[fnIndex].code + ' <span class="show_text_s">Selecting</span>'
+                                p6_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                                p6_2.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                                p6_1.style.left = 53 + 'px';
+                                p6_2.style.left = 233 + 'px';
+                            } else if (tempArr[fnIndex][0].day == 'T') {
+                                //Tue Thu
+                                p6_1.innerHTML = array[fnIndex].code + ' <span class="show_text_s">Selecting</span>'
+                                p6_2.innerHTML = array[fnIndex].code + ' <span class="show_text_s">Selecting</span>'
+                                p6_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                                p6_2.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                                p6_1.style.left = 143 + 'px';
+                                p6_2.style.left = 323 + 'px';
+                            }
+                        }
+                        //one class
+                    } else if (tempArr[fnIndex].length == 1) {
+                        p3 = document.querySelector('.p3_40')
+                        p4 = document.querySelector('.p4_30')
+                        if (tempArr[fnIndex][0].duration == 4) {
+                            this.which_to_show(3)
+                            p3.innerHTML = array[fnIndex].code + ' <span class="show_text_s">Selecting</span>'
+                                //4 hours p3
+                            if (tempArr[fnIndex][0].day == 'M') {
+                                p3.style.left = 53 + 'px';
+                                p3.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                            } else if (tempArr[fnIndex][0].day == 'T') {
+                                p3.style.left = 143 + 'px';
+                                p3.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                            } else if (tempArr[fnIndex][0].day == 'W') {
+                                p3.style.left = 233 + 'px';
+                                p3.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                            } else if (tempArr[fnIndex][0].day == 'R') {
+                                p3.style.left = 323 + 'px';
+                                p3.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                            } else if (tempArr[fnIndex][0].day == 'F') {
+                                p3.style.left = 413 + 'px';
+                                p3.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                            }
+                        } else if (tempArr[fnIndex][0].duration == 3) {
+                            this.which_to_show(4)
+                            p4.innerHTML = array[fnIndex].code + ' <span class="show_text_s">Selecting</span>'
+                                //3 hours p4
+                            if (tempArr[fnIndex][0].day == 'M') {
+                                p4.style.left = 53 + 'px';
+                                p4.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                            } else if (tempArr[fnIndex][0].day == 'T') {
+                                p4.style.left = 143 + 'px';
+                                p4.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                            } else if (tempArr[fnIndex][0].day == 'W') {
+                                p4.style.left = 233 + 'px';
+                                p4.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                            } else if (tempArr[fnIndex][0].day == 'R') {
+                                p4.style.left = 323 + 'px';
+                                p4.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                            } else if (tempArr[fnIndex][0].day == 'F') {
+                                p4.style.left = 413 + 'px';
+                                p4.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                            }
+                        }
+                    } else if (tempArr[fnIndex].length == 3) {
+                        //three classes
+                        p5_1 = document.querySelector('.p5_10_1')
+                        p5_2 = document.querySelector('.p5_10_2')
+                        p5_3 = document.querySelector('.p5_10_3')
+                        this.which_to_show(5)
+                        p5_1.innerHTML = array[fnIndex].code + ' <span class="show_text_s">Selecting</span>'
+                        p5_2.innerHTML = array[fnIndex].code + ' <span class="show_text_s">Selecting</span>'
+                        p5_3.innerHTML = array[fnIndex].code + ' <span class="show_text_s">Selecting</span>'
+                        p5_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                        p5_2.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                        p5_3.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                    }
+                },
+
+                dynamicBuild: function(fnIndex, css, show_text, bg, data, array) {
+                    let p1_1, p1_2, p1_3
+                    let timeTable = document.querySelector('.time_table_outer')
+                    let insertFlag = document.querySelector('.p_1_20_1')
+                    let div_0 = document.createElement('div')
+                    let div_1 = document.createElement('div')
+                    let div_2 = document.createElement('div')
+                    let tempArr = []
+                    let temp = []
+                    for (i in data) {
+                        tempArr.push(data[i].times)
+                    }
+                    //two class day
+                    if (tempArr[fnIndex].length == 2) {
+                        //2 hours, p1
+                        if (tempArr[fnIndex][0].duration == 2) {
+                            if (tempArr[fnIndex][0].day == 'M') {
+                                //Mon,Wen
+                                timeTable.insertBefore(div_0, insertFlag)
+                                div_0.className = 'p_1_20_1' + ' ' + css + ' p' + this.click_flag + '_1'
+                                timeTable.insertBefore(div_1, insertFlag)
+                                div_1.className = 'p_1_20_2' + ' ' + css + ' p' + this.click_flag + '_2'
+                                p1_1 = document.querySelector('.p' + this.click_flag + '_1')
+                                p1_2 = document.querySelector('.p' + this.click_flag + '_2')
+                                p1_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_2.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px'
+                                p1_2.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px'
+                                p1_1.style.left = 53 + 'px'
+                                p1_2.style.left = 233 + 'px'
+                                temp.push('p' + this.click_flag + '_1')
+                                temp.push('p' + this.click_flag + '_2')
+                                this.click_flag += 1
+                                array.push(temp)
+                            } else if (tempArr[fnIndex][0].day == 'T') {
+                                //Tue Thu
+                                timeTable.insertBefore(div_0, insertFlag)
+                                div_0.className = 'p_1_20_1' + ' ' + css + ' p' + this.click_flag + '_1'
+                                timeTable.insertBefore(div_1, insertFlag)
+                                div_1.className = 'p_1_20_2' + ' ' + css + ' p' + this.click_flag + '_2'
+                                p1_1 = document.querySelector('.p' + this.click_flag + '_1')
+                                p1_2 = document.querySelector('.p' + this.click_flag + '_2')
+                                p1_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_2.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px'
+                                p1_2.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px'
+                                p1_1.style.left = 143 + 'px'
+                                p1_2.style.left = 323 + 'px'
+                                temp.push('p' + this.click_flag + '_1')
+                                temp.push('p' + this.click_flag + '_2')
+                                this.click_flag += 1
+                                array.push(temp)
+                            } else if (tempArr[fnIndex][0].day == 'W') {
+                                //Wen Fri
+                                timeTable.insertBefore(div_0, insertFlag)
+                                div_0.className = 'p_1_20_1' + ' ' + css + ' p' + this.click_flag + '_1'
+                                timeTable.insertBefore(div_1, insertFlag)
+                                div_1.className = 'p_1_20_2' + ' ' + css + ' p' + this.click_flag + '_2'
+                                p1_1 = document.querySelector('.p' + this.click_flag + '_1')
+                                p1_2 = document.querySelector('.p' + this.click_flag + '_2')
+                                p1_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_2.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px'
+                                p1_2.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px'
+                                p1_1.style.left = 233 + 'px'
+                                p1_2.style.left = 413 + 'px'
+                                temp.push('p' + this.click_flag + '_1')
+                                temp.push('p' + this.click_flag + '_2')
+                                this.click_flag += 1
+                                array.push(temp)
+                            }
+                        } else if (tempArr[fnIndex][0].duration == 1.5) {
+                            //1.5 hours, p2
+                            if (tempArr[fnIndex][0].day == 'M') {
+                                //Mon,Wen
+                                timeTable.insertBefore(div_0, insertFlag)
+                                div_0.className = 'p_2_15_1' + ' ' + css + ' p' + this.click_flag + '_1'
+                                timeTable.insertBefore(div_1, insertFlag)
+                                div_1.className = 'p_2_15_2' + ' ' + css + ' p' + this.click_flag + '_2'
+                                p1_1 = document.querySelector('.p' + this.click_flag + '_1')
+                                p1_2 = document.querySelector('.p' + this.click_flag + '_2')
+                                p1_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_2.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px'
+                                p1_2.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px'
+                                p1_1.style.left = 53 + 'px'
+                                p1_2.style.left = 233 + 'px'
+                                temp.push('p' + this.click_flag + '_1')
+                                temp.push('p' + this.click_flag + '_2')
+                                this.click_flag += 1
+                                array.push(temp)
+                            } else if (tempArr[fnIndex][0].day == 'T') {
+                                //Tue Thu
+                                timeTable.insertBefore(div_0, insertFlag)
+                                div_0.className = 'p_2_15_1' + ' ' + css + ' p' + this.click_flag + '_1'
+                                timeTable.insertBefore(div_1, insertFlag)
+                                div_1.className = 'p_2_15_2' + ' ' + css + ' p' + this.click_flag + '_2'
+                                p1_1 = document.querySelector('.p' + this.click_flag + '_1')
+                                p1_2 = document.querySelector('.p' + this.click_flag + '_2')
+                                p1_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_2.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px'
+                                p1_2.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px'
+                                p1_1.style.left = 143 + 'px'
+                                p1_2.style.left = 323 + 'px'
+                                temp.push('p' + this.click_flag + '_1')
+                                temp.push('p' + this.click_flag + '_2')
+                                this.click_flag += 1
+                                array.push(temp)
+                            } else if (tempArr[fnIndex][0].day == 'W') {
+                                //Wen Fri
+                                timeTable.insertBefore(div_0, insertFlag)
+                                div_0.className = 'p_2_15_1' + ' ' + css + ' p' + this.click_flag + '_1'
+                                timeTable.insertBefore(div_1, insertFlag)
+                                div_1.className = 'p_2_15_2' + ' ' + css + ' p' + this.click_flag + '_2'
+                                p1_1 = document.querySelector('.p' + this.click_flag + '_1')
+                                p1_2 = document.querySelector('.p' + this.click_flag + '_2')
+                                p1_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_2.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px'
+                                p1_2.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px'
+                                p1_1.style.left = 233 + 'px'
+                                p1_2.style.left = 413 + 'px'
+                                temp.push('p' + this.click_flag + '_1')
+                                temp.push('p' + this.click_flag + '_2')
+                                this.click_flag += 1
+                                array.push(temp)
+                            }
+                        } else if (tempArr[fnIndex][0].duration == 1) {
+                            //1 hour, p6
+                            if (tempArr[fnIndex][0].day == 'M') {
+                                //Mon,Wen
+                                timeTable.insertBefore(div_0, insertFlag)
+                                div_0.className = 'p_6_10_1' + ' ' + css + ' p' + this.click_flag + '_1'
+                                timeTable.insertBefore(div_1, insertFlag)
+                                div_1.className = 'p_6_10_2' + ' ' + css + ' p' + this.click_flag + '_2'
+                                p1_1 = document.querySelector('.p' + this.click_flag + '_1')
+                                p1_2 = document.querySelector('.p' + this.click_flag + '_2')
+                                p1_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_2.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px'
+                                p1_2.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px'
+                                p1_1.style.left = 53 + 'px'
+                                p1_2.style.left = 233 + 'px'
+                                temp.push('p' + this.click_flag + '_1')
+                                temp.push('p' + this.click_flag + '_2')
+                                this.click_flag += 1
+                                array.push(temp)
+                            } else if (tempArr[fnIndex][0].day == 'T') {
+                                //Tue Thu
+                                timeTable.insertBefore(div_0, insertFlag)
+                                div_0.className = 'p_6_10_1' + ' ' + css + ' p' + this.click_flag + '_1'
+                                timeTable.insertBefore(div_1, insertFlag)
+                                div_1.className = 'p_6_10_2' + ' ' + css + ' p' + this.click_flag + '_2'
+                                p1_1 = document.querySelector('.p' + this.click_flag + '_1')
+                                p1_2 = document.querySelector('.p' + this.click_flag + '_2')
+                                p1_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_2.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px'
+                                p1_2.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px'
+                                p1_1.style.left = 143 + 'px'
+                                p1_2.style.left = 323 + 'px'
+                                temp.push('p' + this.click_flag + '_1')
+                                temp.push('p' + this.click_flag + '_2')
+                                this.click_flag += 1
+                                array.push(temp)
+                            } else if (tempArr[fnIndex][0].day == 'W') {
+                                //Wen Fri
+                                timeTable.insertBefore(div_0, insertFlag)
+                                div_0.className = 'p_6_10_1' + ' ' + css + ' p' + this.click_flag + '_1'
+                                timeTable.insertBefore(div_1, insertFlag)
+                                div_1.className = 'p_6_10_2' + ' ' + css + ' p' + this.click_flag + '_2'
+                                p1_1 = document.querySelector('.p' + this.click_flag + '_1')
+                                p1_2 = document.querySelector('.p' + this.click_flag + '_2')
+                                p1_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_2.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px'
+                                p1_2.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px'
+                                p1_1.style.left = 233 + 'px'
+                                p1_2.style.left = 413 + 'px'
+                                temp.push('p' + this.click_flag + '_1')
+                                temp.push('p' + this.click_flag + '_2')
+                                this.click_flag += 1
+                                array.push(temp)
+                            }
+                        }
+                        //one class
+                    } else if (tempArr[fnIndex].length == 1) {
+                        if (tempArr[fnIndex][0].duration == 4) {
+                            //4 hours p3
+                            //build the div and get the element
+                            timeTable.insertBefore(div_0, insertFlag)
+                            div_0.className = 'p_3_40' + ' ' + css + ' p' + this.click_flag
+                            p1_1 = document.querySelector('.p' + this.click_flag)
+                            temp.push('p' + this.click_flag)
+                            array.push(temp)
+                            if (tempArr[fnIndex][0].day == 'M') {
+                                p1_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_1.style.left = 53 + 'px';
+                                p1_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                                this.click_flag += 1
+                            } else if (tempArr[fnIndex][0].day == 'T') {
+                                p1_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_1.style.left = 143 + 'px';
+                                p1_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                                this.click_flag += 1
+                            } else if (tempArr[fnIndex][0].day == 'W') {
+                                p1_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_1.style.left = 233 + 'px';
+                                p1_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                                this.click_flag += 1
+                            } else if (tempArr[fnIndex][0].day == 'R') {
+                                p1_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_1.style.left = 323 + 'px';
+                                p1_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                                this.click_flag += 1
+                            } else if (tempArr[fnIndex][0].day == 'F') {
+                                p1_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_1.style.left = 413 + 'px';
+                                p1_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                                this.click_flag += 1
+                            }
+                        } else if (tempArr[fnIndex][0].duration == 3) {
+                            //3 hours p4
+                            timeTable.insertBefore(div_1, insertFlag)
+                            div_1.className = 'p_4_30' + ' ' + css + ' p' + this.click_flag
+                            p1_1 = document.querySelector('.p' + this.click_flag)
+                            temp.push('p' + this.click_flag)
+                            array.push(temp)
+                            if (tempArr[fnIndex][0].day == 'M') {
+                                p1_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_1.style.left = 53 + 'px';
+                                p1_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                                this.click_flag += 1
+                            } else if (tempArr[fnIndex][0].day == 'T') {
+                                p1_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_1.style.left = 143 + 'px';
+                                p1_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                                this.click_flag += 1
+                            } else if (tempArr[fnIndex][0].day == 'W') {
+                                p1_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_1.style.left = 233 + 'px';
+                                p1_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                                this.click_flag += 1
+                            } else if (tempArr[fnIndex][0].day == 'R') {
+                                p1_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_1.style.left = 323 + 'px';
+                                p1_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                                this.click_flag += 1
+                            } else if (tempArr[fnIndex][0].day == 'F') {
+                                p1_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                                p1_1.style.left = 413 + 'px';
+                                p1_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                                this.click_flag += 1
+                            }
+                        }
+                    } else if (tempArr[fnIndex].length == 3) {
+                        //three classes p5
+                        timeTable.insertBefore(div_0, insertFlag)
+                        div_0.className = 'p_5_10_1' + ' ' + css + ' p' + this.click_flag + '_1'
+                        timeTable.insertBefore(div_1, insertFlag)
+                        div_1.className = 'p_5_10_2' + ' ' + css + ' p' + this.click_flag + '_2'
+                        timeTable.insertBefore(div_2, insertFlag)
+                        div_2.className = 'p_5_10_3' + ' ' + css + ' p' + this.click_flag + '_3'
+                        p1_1 = document.querySelector('.p' + this.click_flag + '_1')
+                        p1_2 = document.querySelector('.p' + this.click_flag + '_2')
+                        p1_3 = document.querySelector('.p' + this.click_flag + '_3')
+                        p1_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                        p1_2.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                        p1_3.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                        p1_1.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                        p1_2.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                        p1_3.style.top = (tempArr[fnIndex][0].hour - 7) * 50 + 3 + 'px';
+                        temp.push('p' + this.click_flag + '_1')
+                        temp.push('p' + this.click_flag + '_2')
+                        temp.push('p' + this.click_flag + '_3')
+                        this.click_flag += 1
+                        array.push(temp)
+                    }
+                },
+
+                get_old_theme: function(node) {
+                    let old_theme_array = node.className.split(' ')
+                    let theme = old_theme_array[0] + ' none ' + old_theme_array[2]
+                    return theme
+                },
+
+                change_float_theme: function(fnIndex, fnValue, array, flag, bg, show_text, data) {
+                    let tempArr = []
+                    for (i in data) {
+                        tempArr.push(data[i].times)
+                    }
+                    //two class day
+                    if (flag == 0) {
+                        if (tempArr[fnIndex].length == 2) {
+                            node_1 = document.querySelector('.' + array[fnValue][0])
+                            node_2 = document.querySelector('.' + array[fnValue][1])
+                            node_1.className = this.get_old_theme(node_1) + ' module_show_delte'
+                            node_2.className = this.get_old_theme(node_2) + ' module_show_delte'
+                            node_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                            node_2.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                        } else if (tempArr[fnIndex].length == 1) {
+                            node_1 = document.querySelector('.' + array[fnValue][0])
+                            node_1.className = this.get_old_theme(node_1) + ' module_show_delte'
+                            node_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                        } else if (tempArr[fnIndex].length == 3) {
+                            node_1 = document.querySelector('.' + array[fnValue][0])
+                            node_2 = document.querySelector('.' + array[fnValue][1])
+                            node_3 = document.querySelector('.' + array[fnValue][2])
+                            node_1.className = this.get_old_theme(node_1) + ' module_show_delte'
+                            node_2.className = this.get_old_theme(node_2) + ' module_show_delte'
+                            node_3.className = this.get_old_theme(node_3) + ' module_show_delte'
+                            node_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                            node_2.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                            node_3.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                        }
+                    } else if (flag == 1) {
+                        if (tempArr[fnIndex].length == 2) {
+                            node_1 = document.querySelector('.' + array[fnValue][0])
+                            node_2 = document.querySelector('.' + array[fnValue][1])
+                            node_1.className = this.get_old_theme(node_1) + ' module_show'
+                            node_2.className = this.get_old_theme(node_2) + ' module_show'
+                            node_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                            node_2.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                        } else if (tempArr[fnIndex].length == 1) {
+                            node_1 = document.querySelector('.' + array[fnValue][0])
+                            node_1.className = this.get_old_theme(node_1) + ' module_show'
+                            node_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                        } else if (tempArr[fnIndex].length == 3) {
+                            node_1 = document.querySelector('.' + array[fnValue][0])
+                            node_2 = document.querySelector('.' + array[fnValue][1])
+                            node_3 = document.querySelector('.' + array[fnValue][2])
+                            node_1.className = this.get_old_theme(node_1) + ' module_show'
+                            node_2.className = this.get_old_theme(node_2) + ' module_show'
+                            node_3.className = this.get_old_theme(node_3) + ' module_show'
+                            node_1.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                            node_2.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                            node_3.innerHTML = data[fnIndex].code + ' <span class="' + bg + '">' + show_text + '</span>'
+                        }
+                    }
+                },
+
+                close_bar: function() {
+                    this.course_flag = true;
+                    this.result_flag = false;
+                    //clean the search result array.
+                    this.result = []
+                    this.indexArr_1 = []
+                },
+
+                countDown: function() {
+                    let current_time = +new Date();
+                    const until_date = +new Date('2021-12-31 12:00:00');
+                    let times = (until_date - current_time) / 1000;
+                    let day = parseInt(times / 60 / 60 / 24);
+                    this.day = day < 10 ? '0' + day : day;
+                    let hour = parseInt(times / 60 / 60 % 24);
+                    this.hour = hour < 10 ? '0' + hour : hour;
+                    let minute = parseInt(times / 60 % 60);
+                    this.minute = minute < 10 ? '0' + minute : minute;
+                    let second = parseInt(times % 60);
+                    this.second = second < 10 ? '0' + second : second;
+                },
+
+                search_fn: function() {
+                    let key_word = this.keyword
+                    if (key_word == '') {
+                        alert('Please enter Title, Subject, Instructor or Keyword');
+                    } else {
+                        this.result = this.courses.filter(
+                            //search for code,title and instructor
+                            // || item.title.indexOf(key_word) > -1 || item.instructor.indexOf(key_word) > -1
+                            item => item.code.indexOf(key_word) > -1)
+                        if (this.result.length > 0) {
+                            if (this.result.length != 0) {
+                                //if we can get result.
+                                //1.get keyword, 2.turn off course div, 3.turn on result div, 4.show the keyword you search
+                                this.search_result = this.keyword
+                                this.course_flag = false
+                                this.result_flag = true
+                                this.close_bar_flag = 1
+                                    //this.sync_to_result()
+                            } else if (this.result.length == 0) {
+                                this.search_result = this.keyword
+                                this.course_flag = false
+                                this.result_flag = true
+                                this.close_bar_flag = 0 //show the no result text
+                            }
+                        } else if (this.result.length == 0) {
+                            this.result = this.courses.filter(item => item.title.indexOf(key_word) > -1 || item.instructor.indexOf(key_word) > -1)
+                            if (this.result.length != 0) {
+                                //this.sync_to_result()
+                                //if we can get result.
+                                //1.get keyword, 2.turn off course div, 3.turn on result div, 4.show the keyword you search
+                                this.search_result = this.keyword
+                                this.course_flag = false
+                                this.result_flag = true
+                                this.close_bar_flag = 1
+                            } else if (this.result.length == 0) {
+                                this.search_result = this.keyword
+                                this.course_flag = false
+                                this.result_flag = true
+                                this.close_bar_flag = 0 //show the no result text
+                            }
+                        }
+                        return this.result;
+                    }
+                },
+
+                changeText: function(index, num) {
+                    //[index][0]=not select, [index][1]=selecting, [index][2]=deleting, [index][3]=Selected
+                    for (let i = 0; i < 4; i++) {
+                        this.switchShow[index][i] = false
+                    }
+                    this.switchShow[index][num] = true
+                },
+
+                mouseover_fn: function(index, $event) {
+                    if ($event.currentTarget.className.indexOf('bg_mouseon') > -1) {
+                        //Mode 1: if mouse over the "mouse click" one, then change the css to "deleting"
+                        //deleting
+                        $event.currentTarget.className = 'bg_over_delete'
+                        this.changeText(index, 2)
+                        if (this.result.length == 0) {
+                            this.change_float_theme(index, $event.currentTarget.value, this.click_array, 0, 'show_text_s', 'Deleting', this.courses)
+                        } else if (this.result.length > 0 && this.courses.length > 0) {
+                            this.change_float_theme(index, $event.currentTarget.value, this.click_array, 0, 'show_text_s', 'Deleting', this.result)
+                        }
+                    } else {
+                        //Mode 2: if mouse over the null one, then change the css to "mouse over"
+                        //selecting
+                        if (this.result.length == 0) {
+                            this.float_show(index, this.courses);
+                        } else if (this.result.length > 0 && this.courses.length > 0) {
+                            this.float_show(index, this.result);
+                        }
+                        this.overIndex = index
+                        this.changeText(index, 1)
+                    }
+                },
+
+                mouseout_fn: function(index, $event) {
+                    if ($event.currentTarget.className.indexOf('bg_over_delete') > -1) {
+                        //Mode 1: if mouse leave the deleting one, then restore the css to "mouseon"
+                        //selected
+                        $event.currentTarget.className = 'bg_mouseon'
+                        if (this.result.length == '') {
+                            this.change_float_theme(index, $event.currentTarget.value, this.click_array, 1, 'show_text_sd', 'Selected', this.courses)
+                        } else if (this.result.length > 0 && this.courses.length > 0) {
+                            this.change_float_theme(index, $event.currentTarget.value, this.click_array, 1, 'show_text_sd', 'Selected', this.result)
+                        }
+                        this.changeText(index, 3)
+                    } else if ($event.currentTarget.className.indexOf('bg_over') > -1) {
+                        //Mode 2: if mouse leave the selecting one then restore the css to the null
+                        //---not select---
+                        this.overIndex = null
+
+                        //disable all the float div
+                        for (let i = 1; i <= 6; i++) {
+                            this.float_flag[i] = false
+                        }
+                        this.changeText(index, 0)
+                    }
+                },
+
+                sync_to_result: function() {
+                    let c_list = document.querySelector('.course_list')
+                    let index_in_result
+                    let current_value
+                    let a = document.querySelector('.result_list').children
+                    for (let i = 0; i < this.indexArr.length; i++) {
+                        index_in_result = this.result.findIndex(item => item.title === this.courses[this.indexArr[i]].title) //get the corresponding index by title
+                        this.indexArr_1.push(index_in_result)
+                        current_value = c_list.children[this.indexArr[i]].value
+                        console.log((document.querySelector('.result_list')).children[0]);
+                        // r_list.childNodes[index_in_result].value = current_value
+                    }
+                },
+
+                mouseon_fn: function(index, $event) {
+                    let r_temp
+                    let r_warn_temp
+
+                    //disable the mouseover css first.
+                    this.overIndex = null
+                    let TempArr = this.indexArr.indexOf(index)
+                    if (TempArr > -1) {
+                        //---not select---
+                        this.indexArr.splice(TempArr, 1) //delect the recorresponding element 
+                        this.changeText(index, 0)
+                        this.dynamicDelete(index, $event.currentTarget.value, this.click_array, this.courses)
+                        $event.currentTarget.value = -1
+                    } else {
+                        //---selected---
+                        //disable all the float div
+                        for (let i = 1; i <= 6; i++) {
+                            this.float_flag[i] = false
+                        }
+                        //we do change on the courses list.
+                        this.indexArr.push(index)
+                        this.dynamicBuild(index, 'module_show', 'Selected', 'show_text_sd', this.courses, this.click_array)
+                        this.changeText(index, 3)
+                        $event.currentTarget.value = (this.click_flag - 1)
+                    }
+
+                    r_temp = this.courses[index].times[0].day + this.courses[index].times[0].hour + this.courses[index].times[1].day + this.courses[index].times[1].hour + ' ' + index
+                    r_warn_temp = this.warn_array.indexOf(r_temp)
+                    let r_temp_split = r_temp.split(' ')
+                    let flag = false
+                    console.log(r_temp_split[0]);
+                    console.log(r_temp_split[1]);
+                    console.log(index);
+                    for (let i = 0; i < this.warn_array.length; i++) {
+                        if (this.warn_array[i].indexOf(r_temp_split[0]) > -1) {
+                            flag = true
+                        }
+                    }
+                    if (flag && r_warn_temp == -1) {
+                        this.warn_flag = true
+                        this.warn_text = '!!! You have choosen the conflict classes: ' + this.courses[index].code
+                    }
+
+                    if (r_warn_temp > -1) {
+                        if (r_temp_split[1] == index) {
+                            console.log('here0');
+                            this.warn_array.splice(r_warn_temp, 1)
+                            this.warn_flag = false
+                        }
+                    } else {
+                        this.warn_array.push(r_temp)
+                    }
+                    console.log(this.warn_array);
+                },
+
+                r_mouseon_fn: function(index, $event) {
+                    let r_temp
+                    let r_warn_temp
+                        //disable the mouseover css first.
+                    this.overIndex = null
+                    let TempArr = this.indexArr_1.indexOf(index)
+                    if (TempArr > -1) {
+                        //---not select---
+                        this.indexArr_1.splice(TempArr, 1) //delect the recorresponding element 
+                        this.changeText(index, 0)
+                        this.dynamicDelete(index, $event.currentTarget.value, this.click_array, this.result)
+                        $event.currentTarget.value = -1
+                    } else {
+                        //console.log(this.warn_array);
+                        //---selected---
+                        //disable all the float div
+                        for (let i = 1; i <= 6; i++) {
+                            this.float_flag[i] = false
+                        }
+                        //search things on the result list.
+                        this.indexArr_1.push(index)
+                        this.dynamicBuild(index, 'module_show', 'Selected', 'show_text_sd', this.result, this.click_array)
+                        this.changeText(index, 3)
+                        $event.currentTarget.value = (this.click_flag - 1)
+                    }
+                    let index_in_course = this.courses.findIndex(item => item.title === this.result[index].title) //get the corresponding index by title
+                    let judge = this.indexArr.indexOf(index_in_course) //Does the current index already exist? If it does, do nothing.
+                    if (judge > -1) {
+                        this.indexArr.splice(judge, 1) //delect the recorresponding element 
+                    } else {
+                        this.indexArr.push(index_in_course)
+
+                        //use the class name in the clicl_array to get the value
+                        let temp_arr = this.click_array[$event.currentTarget.value][0].substr(1).split('_')
+                        temp_arr[0] //get the corresponding value
+                        document.querySelector('.course_list').children[this.courses.findIndex(item => item.title === this.result[index].title)].value = temp_arr[0]
+                    }
+                    r_temp = this.result[index].times[0].day + this.result[index].times[0].hour + this.result[index].times[1].day + this.result[index].times[1].hour + ' ' + index
+                    r_warn_temp = this.warn_array.indexOf(r_temp)
+                    let r_temp_split = r_temp.split(' ')
+                    let flag = false
+                    console.log(r_temp_split[0]);
+                    console.log(r_temp_split[1]);
+                    console.log(index);
+                    for (let i = 0; i < this.warn_array.length; i++) {
+                        if (this.warn_array[i].indexOf(r_temp_split[0]) > -1) {
+                            flag = true
+                        }
+                    }
+                    if (flag && r_warn_temp == -1) {
+                        this.warn_flag = true
+                        this.warn_text = '!!! You have choosen the conflict classes: ' + this.result[index].code
+                    }
+
+                    if (r_warn_temp > -1) {
+                        if (r_temp_split[1] == index) {
+                            console.log('here0');
+                            this.warn_array.splice(r_warn_temp, 1)
+                            this.warn_flag = false
+                        }
+                    } else {
+                        this.warn_array.push(r_temp)
+                    }
+                    console.log(this.warn_array);
+                },
+            },
+        });
+    </script>
+</body>
+
+</html>
